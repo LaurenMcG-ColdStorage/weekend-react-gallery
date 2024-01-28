@@ -2,7 +2,7 @@ import styles from './GalleryItem.module.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-function GalleryItem({pic}){
+function GalleryItem({pic, refreshGalleryCallback}){
     const [detail, setDetail] = useState(false)
     
     function handleSwap(){
@@ -13,10 +13,14 @@ function GalleryItem({pic}){
         };
     };
 
-    function handleLike(){
-        axios.put(`/like/${pic.id}`)
+    function handleLike(pic){
+        axios({
+            method: 'PUT',
+            url: `/api/gallery/like/${pic.id}`,
+            data: pic
+        })
             .then((response) => {
-
+                refreshGalleryCallback()
             })
             .catch((error) => {
                 console.log(error);
@@ -26,10 +30,10 @@ function GalleryItem({pic}){
     return(
         <div data-testid="galleryItem">
             <h4>{pic.title}</h4>
-            {detail ? <p className='desc'>{pic.description}</p>: <img src={pic.url} name={pic.id} />}
+            {detail ? <p data-testid="description">{pic.description}</p>: <img src={pic.url} name={pic.id} />}
             <br />
             <button datatype-testid="toggle" onClick={() => {handleSwap()}}>Details</button>
-            <button onClick={() => {handleLike(pic.id)}}>Like! {pic.likes}</button>
+            <button datatype-testid="like" onClick={() => {handleLike(pic)}}>Like! {pic.likes}</button>
 
         </div>
     );

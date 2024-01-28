@@ -6,11 +6,17 @@ const router = express.Router();
 router.put('/like/:id', (req, res) => {
   // code here
   const pic = req.params.id
-  let picLikes = req.params.likes;
+  const picDetails = req.body;
+  console.log(picDetails);
+  
+  let picLikes = picDetails.likes;
+  console.log(picLikes);
   picLikes += 1;
-  const queryText = `UPDATE "gallery" SET "likes" = $1 WHERE "id" = $2`
+  
+  const queryText = `UPDATE "gallery" SET "likes" = $1 WHERE "id" = $2;`;
+  
   pool
-  .query(queryText, picLikes, pic)
+  .query(queryText, [picLikes, pic])
   .then((result) => {
     console.log('Like Updated');
     res.sendStatus(200);
@@ -24,7 +30,7 @@ router.put('/like/:id', (req, res) => {
 // GET /gallery
 router.get('/', (req, res) => {
   // code here
-  const dbQuery = `SELECT * FROM "gallery";`;
+  const dbQuery = `SELECT * FROM "gallery" ORDER BY "id" ASC;`;
   pool
     .query(dbQuery)
     .then((result) => {
