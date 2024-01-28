@@ -1,5 +1,5 @@
 
-function GalleryList(){
+function GalleryList(gallery, setGalleryCallback){
     return(
 
     );
