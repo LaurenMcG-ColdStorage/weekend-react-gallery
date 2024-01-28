@@ -22,7 +22,7 @@ function App() {
   }, [])
 
     return (
-      <div data-testid='app'>
+      <div data-testid='app galleryList'>
         <header>
           <h1>React Gallery</h1>
         </header>
