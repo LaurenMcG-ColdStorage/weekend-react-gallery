@@ -1,4 +1,8 @@
 img{
     width: 100px;
+    height: auto;  
+}
+#description{
+    width: 100px;
     height: auto;
 }

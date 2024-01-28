@@ -1,6 +1,7 @@
-import styles from './GalleryItem.module.css';
+import './GalleryItem.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import Box from '@mui/material/Box';
 
 function GalleryItem({pic, refreshGalleryCallback}){
     const [detail, setDetail] = useState(false)
@@ -28,14 +29,14 @@ function GalleryItem({pic, refreshGalleryCallback}){
     }
 
     return(
-        <div data-testid="galleryItem">
+        <Box data-testid="galleryItem">
             <h4>{pic.title}</h4>
-            {detail ? <p data-testid="description">{pic.description}</p>: <img src={pic.url} name={pic.id} />}
+            {detail ? <div data-testid="description">{pic.description}</div> : <img src={pic.url} name={pic.id} />} 
             <br />
-            <button datatype-testid="toggle" onClick={() => {handleSwap()}}>Details</button>
-            <button datatype-testid="like" onClick={() => {handleLike(pic)}}>Like! {pic.likes}</button>
-
-        </div>
+            <button data-testid="toggle" onClick={() => {handleSwap()}}>Toggle</button>
+            <button data-testid="like" onClick={() => {handleLike(pic)}}>Like</button><br />
+            <div>Likes: {pic.likes}</div>
+        </Box>
     );
 };
 

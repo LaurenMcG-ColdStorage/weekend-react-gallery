@@ -18,7 +18,7 @@ function GalleryList(){
     useEffect(() => {
       refreshGallery()
     }, [])
-    console.log(gallery);
+    //console.log(gallery);
     
     return(
       <div data-testid="galleryList">
