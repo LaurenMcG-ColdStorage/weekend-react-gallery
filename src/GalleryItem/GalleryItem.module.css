@@ -1,6 +1,7 @@
 img{
     width: 100px;
-    height: auto;  
+    height: auto;
+    margin-bottom: 2px;
 }
 #description{
     width: 100px;

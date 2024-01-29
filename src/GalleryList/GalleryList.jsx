@@ -1,5 +1,6 @@
 import GalleryItem from '../GalleryItem/GalleryItem';
 import axios from 'axios';
+import './GalleryList.module.css';
 import { useState, useEffect } from 'react';
 
 function GalleryList(){
